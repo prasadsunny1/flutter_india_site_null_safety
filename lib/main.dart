@@ -100,18 +100,63 @@ void startTimer() {
     body: StreamBuilder(
                       stream: Stream.periodic(Duration(seconds: 1), (i) => i),
                       builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
-                        DateFormat format = DateFormat("mm:ss");
+                        DateFormat formatMin = DateFormat("mm");
+                        DateFormat formatSec = DateFormat("ss");
                         int now = DateTime
                             .now()
                             .millisecondsSinceEpoch;
                         Duration remaining = Duration(milliseconds: estimateTs - now);
-                        var dateString = '${(remaining.inDays<10)?"0":""}${remaining.inDays}:${((remaining.inHours -(remaining.inDays*24))<10)?"0":""}${remaining.inHours -(remaining.inDays*24)}:${format.format(
+                        var remainingDays ='${(remaining.inDays<10)?"0":""}${remaining.inDays}';
+                        var remainingHours='${((remaining.inHours -(remaining.inDays*24))<10)?"0":""}${remaining.inHours -(remaining.inDays*24)}';
+                        
+                        var remainingMin = '${formatMin.format(
                             DateTime.fromMillisecondsSinceEpoch(remaining.inMilliseconds))}';
-                        print(dateString);
+                            var remainingSec = '${formatSec.format(
+                            DateTime.fromMillisecondsSinceEpoch(remaining.inMilliseconds))}';
                         return Container(color: Color(0xff0B1B2B),
                           alignment: Alignment.center,
-                          child: Text(dateString,style: TextStyle(fontSize: 50,color: Colors.white,fontWeight: FontWeight.bold),),);
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Flutter India",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 70,color: Colors.white),),
+                              SizedBox(
+                                height: 40,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                CounterCellWidget(remainingDays: remainingDays,txt: "DAYS",),
+                                CounterCellWidget(remainingDays: remainingHours,txt: "HOURS",),
+                                 CounterCellWidget(remainingDays: remainingMin,txt: "MINUTES",),
+                                  CounterCellWidget(remainingDays: remainingSec,txt: "SECONDS",),
+                            
+                                ]),
+                            ],
+                          ),);
                       }),
   );
+  }
+}
+
+class CounterCellWidget extends StatelessWidget {
+  const CounterCellWidget({
+    Key key,
+    @required this.remainingDays,
+    @required this.txt,
+  }) : super(key: key);
+
+  final String remainingDays;
+  final String txt;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Text(remainingDays,style: TextStyle(fontSize: 50,color: Colors.white,fontWeight: FontWeight.bold),),
+          Divider(),
+          Text(txt,style: TextStyle(color: Colors.white,),)
+        ],
+      ),
+    );
   }
 }
