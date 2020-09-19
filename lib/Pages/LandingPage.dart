@@ -14,6 +14,7 @@ class _LandingPageState extends State<LandingPage> {
     Size size = MediaQuery.of(context).size;
 
     return ListView(
+      padding: EdgeInsets.symmetric(horizontal: 48),
       children: [
         Container(
           height: size.height,
@@ -75,7 +76,6 @@ class _LandingPageState extends State<LandingPage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SessionHeader(),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -85,26 +85,23 @@ class _LandingPageState extends State<LandingPage> {
                     name: "Filip Hráček",
                     title: "Developer Advocate, Flutter",
                   ),
-                
+                  SizedBox(
+                    width: 16,
+                  ),
                   Expanded(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        SessionHeader(),
+                        SizedBox(height: 16),
                         Text(
-                          'The Future of the Web: and how to prepare for it now',
-                          style: TextStyle(
-                            fontSize: 24,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet maiores suscipit facere provident, reiciendis ab, soluta, consectetur adipisicing elit. Eveniet maiores suscipit facere provident, reiciendis ab, soluta, unde nostrum eligendi necessitatibus quia distinctio mollitia ipsa! Ad a, suscipit voluptatem atque cupiditate.',
-                          style: TextStyle(
-                            fontSize: 24,
-                            color: Colors.white,
-                          ),
+                          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet maiores suscipit facere provident, reiciendis ab, soluta.',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline6
+                              .copyWith(color: Colors.white),
                         ),
                       ],
                     ),
@@ -127,30 +124,31 @@ class SessionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
-     padding: EdgeInsets.symmetric(horizontal: 48,),
+      padding: EdgeInsets.symmetric(
+        horizontal: 24,
+        vertical: 16,
+      ),
       color: Colors.white24,
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Session 1",
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.white,
-                ),
-              ),
-              Text(
-                "20:30 - 21:30",
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
-            ],
+          Text(
+            "20:30 - 21:30",
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.white,
+            ),
+          ),
+          SizedBox(
+            width: 16,
+          ),
+          Text(
+            'The Future of the Web: and how to prepare for it now',
+            style: Theme.of(context)
+                .textTheme
+                .headline5
+                .copyWith(color: Colors.white),
           ),
         ],
       ),

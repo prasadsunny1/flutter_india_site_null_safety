@@ -13,7 +13,7 @@ class SpeakerCard extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(
-          height: 300,
+          height: 200,
           width: 200,
           child: Image.network(
             image,
