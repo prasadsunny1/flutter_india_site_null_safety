@@ -1,32 +1,41 @@
 import 'package:flutter/material.dart';
 
 class SpeakerCard extends StatelessWidget {
+  final String image;
+  final String name;
+  final String title;
+
+  const SpeakerCard({Key key, this.image, this.name, this.title})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        CircleAvatar(
-          backgroundImage: NetworkImage(
-            "https://pbs.twimg.com/profile_images/796079953079111680/ymD9DY5g_400x400.jpg",
+        SizedBox(
+          height: 300,
+          width: 200,
+          child: Image.network(
+            image,
+            fit: BoxFit.cover,
           ),
-          radius: 120,
         ),
         SizedBox(
           width: 16,
         ),
         Text(
-          'Filip Hráček',
+          name,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 40,
+            fontSize: 24,
             color: Colors.white,
           ),
         ),
         Text(
-          'Developer Advocate, Flutter',
+          title,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 24,
+            fontSize: 18,
             color: Colors.white,
           ),
         ),

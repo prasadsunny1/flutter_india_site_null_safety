@@ -57,29 +57,49 @@ var currentPageValue = 0.0;
 
       ):null,
       backgroundColor: Color(0xff0B1C2C),
-      body: PageView.builder(
-        scrollDirection: Axis.vertical,
-        controller: controller,
-        itemCount: buildList.length,
-        itemBuilder: (context, position){
-           if (position == currentPageValue.floor()) {
-      return Transform(
-        transform: Matrix4.identity()..setEntry(3, 2, 0.004)..rotateY(currentPageValue - position)..rotateZ(currentPageValue - position),
-        child: buildList[position]
-      );
+      // body: PageViewBuilder(controller: controller, buildList: buildList, currentPageValue: currentPageValue),
+    
+    body: LandingPage(),
+    );
+  }
+}
+
+class PageViewBuilder extends StatelessWidget {
+  const PageViewBuilder({
+    Key key,
+    @required this.controller,
+    @required this.buildList,
+    @required this.currentPageValue,
+  }) : super(key: key);
+
+  final PageController controller;
+  final List<Widget> buildList;
+  final double currentPageValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return PageView.builder(
+      scrollDirection: Axis.vertical,
+      controller: controller,
+      itemCount: buildList.length,
+      itemBuilder: (context, position){
+         if (position == currentPageValue.floor()) {
+    return Transform(
+      transform: Matrix4.identity()..setEntry(3, 2, 0.004)..rotateY(currentPageValue - position)..rotateZ(currentPageValue - position),
+      child: buildList[position]
+    );
     } else if (position == currentPageValue.floor() + 1){
-      return Transform(
-        transform: Matrix4.identity()..setEntry(3, 2, 0.004)..rotateY(currentPageValue - position)..rotateZ(currentPageValue - position),
-        child: buildList[position]
-      );
+    return Transform(
+      transform: Matrix4.identity()..setEntry(3, 2, 0.004)..rotateY(currentPageValue - position)..rotateZ(currentPageValue - position),
+      child: buildList[position]
+    );
     } else {
-      return buildList[position];
+    return buildList[position];
     }
   },
   // itemCount: 10,
-        //  return buildList[index];
-        // },  
-      ),
+      //  return buildList[index];
+      // },  
     );
   }
 }
