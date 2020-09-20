@@ -4,6 +4,7 @@ import 'package:flutter_india_sep/Pages/About.dart';
 import 'package:flutter_india_sep/Pages/CommunityPage.dart';
 import 'package:flutter_india_sep/Pages/Footer.dart';
 import 'package:flutter_india_sep/Pages/LandingPage.dart';
+import 'package:flutter_india_sep/Pages/SessionDetails.dart';
 
 import 'Utils/AppInfo.dart';
 
@@ -23,6 +24,7 @@ class _HomePageState extends State<HomePage> {
   List<Widget> buildList = [
    LandingPage(),
    AboutPage(),
+   SessionDetails(),
    CommunityPage(),
    Footer()
   ];

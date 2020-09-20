@@ -1,107 +1,265 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_india_sep/Services/launchString.dart';
+import 'package:flutter_india_sep/Services/responsiveness.dart';
+import 'package:flutter_india_sep/Utils/AppInfo.dart';
 import 'package:flutter_india_sep/widgets/speaker_card.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 
-class AboutPage extends StatefulWidget {
-  final color;
+class AboutPage extends StatelessWidget {
+  Widget gapbody(BuildContext context) {
+    return SizedBox(
+      height: Responsiveness.isSmallScreen(context)
+          ? 30.0
+          : Responsiveness.isMediumScreen(context) ? 15.0 : 30.0,
+    );
+  }
 
-  const AboutPage({Key key, this.color}) : super(key: key);
-  @override
-  _AboutPageState createState() => _AboutPageState();
-}
+  Widget gapHeader = SizedBox(
+    height: 70.0,
+  );
 
-class _AboutPageState extends State<AboutPage> {
+  double HeaderFont({BuildContext context}) {
+    if (Responsiveness.isLargeScreen(context)) {
+      return 90.0;
+    } else if (Responsiveness.isMediumScreen(context)) {
+      return 47.0;
+    } else if (Responsiveness.isSmallScreen(context)) {
+      return 40.0;
+    }
+  }
+
+  containerHeight(BuildContext context) {
+    if (Responsiveness.isSmallScreen(context))
+      return MediaQuery.of(context).size.height / 2;
+    else if (Responsiveness.isLargeScreen(context))
+      return MediaQuery.of(context).size.height / 1.5;
+    else if (Responsiveness.isMediumScreen(context))
+      return MediaQuery.of(context).size.height;
+  }
+
   @override
   Widget build(BuildContext context) {
-    var size=MediaQuery.of(context).size;
-    return  Container(
-          height: size.height,
-          width: size.width,
-          color: Color(0xff0B1B2B),
-          alignment: Alignment.center,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.only(left: 35.0),
+        child: aboutPageFormat(context: context),
+      ),
+    );
+  }
+
+  bodyFont({BuildContext context}) {
+    return Responsiveness.isSmallScreen(context) ? 13.0 : 25.0;
+  }
+
+  aboutPageFormat({BuildContext context}) {
+    double headerfont = Responsiveness.isSmallScreen(context) ? 25.0 : 55.0;
+    double imgSize = 525.0;
+    return Responsiveness.isSmallScreen(context)
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SessionHeader(),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SpeakerCard(
-                    image:
-                        "https://pbs.twimg.com/profile_images/796079953079111680/ymD9DY5g_400x400.jpg",
-                    name: "Filip Hráček",
-                    title: "Developer Advocate, Flutter",
-                  ),
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'The Future of the Web: and how to prepare for it now',
-                          style: TextStyle(
-                            fontSize: 24,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet maiores suscipit facere provident, reiciendis ab, soluta, consectetur adipisicing elit. Eveniet maiores suscipit facere provident, reiciendis ab, soluta, unde nostrum eligendi necessitatibus quia distinctio mollitia ipsa! Ad a, suscipit voluptatem atque cupiditate.',
-                          style: TextStyle(
-                            fontSize: 24,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+              
+              gapbody(context),
+              Text(
+                "When and Where",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: Responsiveness.isSmallScreen(context) ? 25.0 : 55.0,
+                ),
+              ),
+              gapbody(context),
+              timeandloc(
+                iconData: Icons.access_time,
+                title: "3-hour starting from 10:00 am IST",
+                iconsize: 25.0,
+                textSize: 15.0,
+                gap: 15.0,
+              ),
+              gapbody(context),
+              timeandloc(
+                  iconData: Icons.location_on,
+                  title: "flutterindia.dev",
+                  iconsize: 25.0,
+                  textSize: 15.0,
+                  gap: 15.0),
+              gapbody(context),
+              addToCalendar(
+                context: context,
+                fontsize: 13.0,
               ),
             ],
+          )
+        : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              gapHeader,
+             Padding(
+                padding: const EdgeInsets.only(left: 40.0),
+                child: Row(
+                  //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            "When and Where",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: Responsiveness.isSmallScreen(context)
+                                  ? 25.0
+                                  : 55.0,
+                            ),
+                          ),
+                          gapbody(context),
+                          timeandloc(
+                            iconData: Icons.access_time,
+                            title: "3-hour starting from 10:00 am IST",
+                          ),
+                          gapbody(context),
+                          timeandloc(
+                            iconData: Icons.location_on,
+                            title: "flutterindia.dev",
+                          ),
+                          gapbody(context),
+                          addToCalendar(
+                            context: context,
+                            fontsize: 20.0,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Flexible(
+                      child: Container(
+                        width: imgSize,
+                        height: imgSize,
+                        child: Image.asset(
+                          "assets/animations/mypersonalLogo.gif",
+                          fit: BoxFit.scaleDown,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          );
+  }
+
+  RichText addToCalendar({BuildContext context, double fontsize = 20.0}) {
+    return RichText(
+      text: TextSpan(
+          text: "Add to ",
+          recognizer: TapGestureRecognizer()..onTap = () {},
+          style: TextStyle(
+            color: Colors.white54,
+            fontSize: fontsize,
           ),
-        )
-        ;
+          children: <TextSpan>[
+            TextSpan(
+              text: " Calendar",
+              style: TextStyle(
+                color: Colors.white,
+              ),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () => Launch.launchUrl("https://bit.ly/3fRitu3"),
+            ),
+          ]),
+    );
+  }
+
+  Row timeandloc(
+      {IconData iconData,
+      String title,
+      double iconsize = 30.0,
+      double textSize = 25.0,
+      gap = 25.0}) {
+    return Row(
+      children: [
+        Icon(
+          iconData,
+          size: iconsize,
+          color: Colors.white,
+        ),
+        SizedBox(
+          width: gap,
+        ),
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: textSize,
+            color: Colors.white,
+          ),
+        ),
+      ],
+    );
   }
 }
 
-
-class SessionHeader extends StatelessWidget {
-  const SessionHeader({
+class studyWidget extends StatelessWidget {
+  const studyWidget({
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      padding: EdgeInsets.symmetric(
-        horizontal: 48,
-      ),
-      color: Colors.white24,
-      child: Row(
-        children: [
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Session 1",
+    if (Responsiveness.isSmallScreen(context)) {
+      return Container(
+        child: Column(
+          children: [
+            Container(
+              height: Responsiveness.isSmallScreen(context)
+                  ? 200
+                  : Responsiveness.isMediumScreen(context) ? 150.0 : 300,
+              child: Image.asset(
+                "assets/animations/study.gif",
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Join us from anywhere around the world. This is a 100% virtual and free conference.\nWe are excited to see you!",
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 17.0,
                   color: Colors.white,
                 ),
               ),
-              Text(
-                "20:30 - 21:30",
+            ),
+          ],
+        ),
+      );
+    } else {
+      return Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Image.asset(
+              "assets/animations/study.gif",
+              scale: 1.5,
+            ),
+            Flexible(
+              child: Text(
+                "Join us from anywhere around the world. This is a 100% virtual and free conference.\nWe are excited to see you!",
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 30.0,
                   color: Colors.white,
                 ),
               ),
-            ],
-          ),
-        ],
-      ),
-    );
+            ),
+          ],
+        ),
+      );
+    }
   }
 }
 

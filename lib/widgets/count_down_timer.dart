@@ -34,15 +34,15 @@ class _CountDownTimerState extends State<CountDownTimer> {
               txt: "DAYS",
             ),
             CounterCellWidget(
-              remainingDays: remainingHours,
+              remainingDays: numberCorrection(time: remainingDays),
               txt: "HOURS",
             ),
             CounterCellWidget(
-              remainingDays: remainingMin,
+              remainingDays: numberCorrection(time: remainingMin),
               txt: "MINUTES",
             ),
             CounterCellWidget(
-              remainingDays: remainingSec,
+              remainingDays: numberCorrection(time: remainingSec),
               txt: "SECONDS",
             ),
           ],
@@ -50,4 +50,7 @@ class _CountDownTimerState extends State<CountDownTimer> {
       },
     );
   }
+}
+String numberCorrection({String time}){
+  return (num.parse(time)<=10)?"0"+time:time;
 }
