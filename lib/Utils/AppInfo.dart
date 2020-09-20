@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class AppInfo {
   static const String appName = "Flutter Day India";
   static const Color backgroundColor = Color(0xff0B1C2C);
-
+  static const Color footerColor = Colors.black26;
+  
   //Image Cover
   static const String imagecoversvg =
       "assets/images/svg/FlutterDayIndiaPoster.svg";
