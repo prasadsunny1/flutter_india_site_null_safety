@@ -84,7 +84,7 @@ class PageViewBuilder extends StatelessWidget {
       // pageSnapping: false,
       shrinkWrap: true,
       scrollDirection: Axis.vertical,
-      // controller: controller,
+      // controller: controller,r
       children: buildList,
       // itemCount: buildList.length,
       // itemBuilder: (context, position){

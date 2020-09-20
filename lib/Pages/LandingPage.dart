@@ -1,7 +1,8 @@
+import 'package:flutter_india_sep/Services/responsiveness.dart';
 import 'package:flutter_india_sep/Utils/AppInfo.dart';
 import 'package:flutter_india_sep/widgets/count_down_timer.dart';
 import 'package:flutter/material.dart';
-
+import 'package:websafe_svg/websafe_svg.dart';
 
 class LandingPage extends StatefulWidget {
   @override
@@ -13,62 +14,79 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return ListView(
-      shrinkWrap: true,
-      children: [
-        Container(
-          height: size.height,
-          width: size.width,
-          color: Color(0xff0B1B2B),
-          alignment: Alignment.center,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SelectableText(
-                "Null Safety with Flutter",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 40,
-                  color: Colors.white,
-                ),
-              ),
-              SelectableText(
-                "3rd October 2020",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30,
-                  color: Colors.white,
-                ),
-              ),
-              SizedBox(height: 40),
-              CountDownTimer(),
-              SizedBox(height: 40),
-              RaisedButton(
-                onPressed: () {},
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 10,
+    return Container(
+      height: size.height,
+      width: size.width,
+      color: Color(0xff0B1B2B),
+      alignment: Alignment.center,
+      child: Stack(
+        children: [
+          Container(
+            height: size.height,
+            width: size.width,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: (Responsiveness.isLargeScreen(context))
+                        ? AssetImage(AppInfo.imagecoverWeb)
+                        : (Responsiveness.isMediumScreen(context))
+                            ? AssetImage(AppInfo.imagecoverIPAD)
+                            : AssetImage(AppInfo.imagecoverMobile),
+                    fit: BoxFit.fill)),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: size.height / 5,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(AppInfo.eventLogo),
+                            fit: BoxFit.contain)),
                   ),
-                  child: Text(
-                    'Register Now',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: AppInfo.backgroundColor,
-                    ),
+                  SizedBox(
+                    height: 40,
                   ),
-                ),
-                hoverElevation: 8,
-                focusElevation: 8,
-                hoverColor: Colors.white10,
+                  CountDownTimer(),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ],
+          Container(
+            height: size.height,
+            width: size.width,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 32,horizontal: 39),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: size.width/3,
+                        height: size.height / 10,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(AppInfo.timeInfo),
+                                fit: BoxFit.contain)),
+                      ),
+                      Container(
+                        width: size.width/3,
+                        height: size.height / 5,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(AppInfo.speakerInfo),
+                                fit: BoxFit.contain)),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }

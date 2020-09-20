@@ -6,13 +6,15 @@ class AppInfo {
   static const Color footerColor = Colors.black26;
   
   //Image Cover
-  static const String imagecoversvg =
-      "assets/images/svg/FlutterDayIndiaPoster.svg";
-  static const String imagecoversvgMobile =
-      "assets/responsive/FlutterDayIndiaMobilePoster.svg";
-  static const String imagecoversvgIPAD =
-      "assets/responsive/MediumScreen/flutterdayindiposterIPAD.svg";
-
+  static const String imagecoverWeb =
+      "assets/Images/Responsive/webView.png";
+  static const String imagecoverMobile =
+      "assets/Images/Responsive/mobileView.png";
+  static const String imagecoverIPAD =
+      "assets/Images/Responsive/ipadView.png";
+  static const String speakerInfo="assets/Images/Responsive/speakerInfo.png";
+  static const String timeInfo="assets/Images/Responsive/time.png";
+  static const String eventLogo="assets/Images/Responsive/eventLogo.png";
   //Text Theme
   static const String textFont = "assets/fonts/ProductSans.ttf";
   static Color textColor = Colors.white;
