@@ -52,5 +52,5 @@ class _CountDownTimerState extends State<CountDownTimer> {
   }
 }
 String numberCorrection({String time}){
-  return (num.parse(time)<=10)?"0"+time:time;
+  return (num.parse(time)<10)?"0"+time:time;
 }

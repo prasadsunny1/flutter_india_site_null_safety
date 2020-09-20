@@ -47,6 +47,32 @@ class _LandingPageState extends State<LandingPage> {
                     height: 40,
                   ),
                   CountDownTimer(),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  RaisedButton(
+                    color: Color(0xff04599C),
+                    onPressed: () {},
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 10,
+                      ),
+                      child: Text(
+                        'Register Now',
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    hoverElevation: 8,
+                    focusElevation: 8,
+                    hoverColor: Colors.white10,
+                  ),
                 ],
               ),
             ),
@@ -58,13 +84,14 @@ class _LandingPageState extends State<LandingPage> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 32,horizontal: 39),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 32, horizontal: 39),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        width: size.width/3,
+                        width: size.width / 3,
                         height: size.height / 10,
                         decoration: BoxDecoration(
                             image: DecorationImage(
@@ -72,7 +99,7 @@ class _LandingPageState extends State<LandingPage> {
                                 fit: BoxFit.contain)),
                       ),
                       Container(
-                        width: size.width/3,
+                        width: size.width / 3,
                         height: size.height / 5,
                         decoration: BoxDecoration(
                             image: DecorationImage(
