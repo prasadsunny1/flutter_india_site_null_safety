@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_india_sep/Pages/About.dart';
+import 'package:flutter_india_sep/Pages/CommunityPage.dart';
+import 'package:flutter_india_sep/Pages/Footer.dart';
 import 'package:flutter_india_sep/Pages/LandingPage.dart';
 
 import 'Utils/AppInfo.dart';
@@ -20,9 +22,9 @@ class _HomePageState extends State<HomePage> {
   }
   List<Widget> buildList = [
    LandingPage(),
-   AboutPage(color: Colors.red,),
-   AboutPage(color: Colors.blue,),
-   AboutPage(color: Colors.yellow,),
+   AboutPage(),
+   CommunityPage(),
+   Footer()
   ];
 
 PageController controller = PageController();
@@ -57,9 +59,9 @@ var currentPageValue = 0.0;
 
       ):null,
       backgroundColor: Color(0xff0B1C2C),
-      // body: PageViewBuilder(controller: controller, buildList: buildList, currentPageValue: currentPageValue),
+      body: PageViewBuilder(controller: controller, buildList: buildList, currentPageValue: currentPageValue),
     
-    body: LandingPage(),
+    // body: LandingPage(),
     );
   }
 }
@@ -78,27 +80,31 @@ class PageViewBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
+    return ListView(
+      // pageSnapping: false,
+      shrinkWrap: true,
       scrollDirection: Axis.vertical,
-      controller: controller,
-      itemCount: buildList.length,
-      itemBuilder: (context, position){
-         if (position == currentPageValue.floor()) {
-    return Transform(
-      transform: Matrix4.identity()..setEntry(3, 2, 0.004)..rotateY(currentPageValue - position)..rotateZ(currentPageValue - position),
-      child: buildList[position]
-    );
-    } else if (position == currentPageValue.floor() + 1){
-    return Transform(
-      transform: Matrix4.identity()..setEntry(3, 2, 0.004)..rotateY(currentPageValue - position)..rotateZ(currentPageValue - position),
-      child: buildList[position]
-    );
-    } else {
-    return buildList[position];
-    }
-  },
+      // controller: controller,
+      children: buildList,
+      // itemCount: buildList.length,
+      // itemBuilder: (context, position){
+      //    return buildList[position];
+    //      if (position == currentPageValue.floor()) {
+    // return Transform(
+    //   transform: Matrix4.identity()..setEntry(3, 2, 0.004)..rotateY(currentPageValue - position)..rotateZ(currentPageValue - position),
+    //   child: buildList[position]
+    // );
+    // } else if (position == currentPageValue.floor() + 1){
+    // return Transform(
+    //   transform: Matrix4.identity()..setEntry(3, 2, 0.004)..rotateY(currentPageValue - position)..rotateZ(currentPageValue - position),
+    //   child: buildList[position]
+    // );
+    // } else {
+    // return buildList[position];
+    // }
+  // },
   // itemCount: 10,
-      //  return buildList[index];
+      
       // },  
     );
   }
