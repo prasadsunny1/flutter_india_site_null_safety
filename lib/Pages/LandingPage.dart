@@ -68,6 +68,8 @@ class _LandingPageState extends State<LandingPage> {
             ],
           ),
         ),
+
+        // page 2 on the screen
         Container(
           height: size.height,
           width: size.width,
@@ -76,37 +78,89 @@ class _LandingPageState extends State<LandingPage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SpeakerCard(
-                    image:
-                        "https://pbs.twimg.com/profile_images/796079953079111680/ymD9DY5g_400x400.jpg",
-                    name: "Filip Hráček",
-                    title: "Developer Advocate, Flutter",
-                  ),
-                  SizedBox(
-                    width: 16,
-                  ),
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SessionHeader(),
-                        SizedBox(height: 16),
-                        Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet maiores suscipit facere provident, reiciendis ab, soluta.',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline6
-                              .copyWith(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+              SessionItem1(),
+              SizedBox(height: 24),
+              SessionItem2(),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class SessionItem2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      "https://pbs.twimg.com/profile_images/796079953079111680/ymD9DY5g_400x400.jpg"),
+                  radius: 60,
+                ),
+                SizedBox(height: ,),
+              ],
+            ),
+            SizedBox(width: 16),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+              Text(""),
+              Text(""),
+              Text(""),
+              Text(""),
+              Text(""),
+              Text(""),
+
+            ],)
+
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SessionItem1 extends StatelessWidget {
+  const SessionItem1({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SpeakerCard(
+          image:
+              "https://pbs.twimg.com/profile_images/796079953079111680/ymD9DY5g_400x400.jpg",
+          name: "Filip Hráček",
+          title: "Developer Advocate, Flutter",
+        ),
+        SizedBox(
+          width: 16,
+        ),
+        Expanded(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SessionHeader(),
+              SizedBox(height: 16),
+              Text(
+                'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet maiores suscipit facere provident, reiciendis ab, soluta.',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    .copyWith(color: Colors.white),
               ),
             ],
           ),
