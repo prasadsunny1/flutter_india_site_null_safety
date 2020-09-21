@@ -2,9 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_india_sep/Services/launchString.dart';
 import 'package:flutter_india_sep/Services/responsiveness.dart';
-import 'package:flutter_india_sep/Utils/AppInfo.dart';
-import 'package:flutter_india_sep/widgets/speaker_card.dart';
-import 'package:websafe_svg/websafe_svg.dart';
+import 'package:flutter_india_sep/widgets/youtube.dart';
 
 class AboutPage extends StatelessWidget {
   Widget gapbody(BuildContext context) {
@@ -55,13 +53,18 @@ class AboutPage extends StatelessWidget {
   aboutPageFormat({BuildContext context}) {
     double headerfont = Responsiveness.isSmallScreen(context) ? 25.0 : 55.0;
     double imgSize = 525.0;
+    var size = MediaQuery.of(context).size;
     return Responsiveness.isSmallScreen(context)
         ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              
+              // Container(
+              //     height: size.height / 3,
+              //     padding: EdgeInsets.symmetric(
+              //         horizontal: size.width / 15, vertical: 20),
+              //     child: Youtube()),
               gapbody(context),
               Text(
                 "When and Where",
@@ -98,7 +101,7 @@ class AboutPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               gapHeader,
-             Padding(
+              Padding(
                 padding: const EdgeInsets.only(left: 40.0),
                 child: Row(
                   //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -140,13 +143,10 @@ class AboutPage extends StatelessWidget {
                     ),
                     Flexible(
                       child: Container(
-                        width: imgSize,
-                        height: imgSize,
-                        child: Image.asset(
-                          "assets/animations/mypersonalLogo.gif",
-                          fit: BoxFit.scaleDown,
-                        ),
-                      ),
+                          height: size.height / 3,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: size.width / 15, vertical: 20),
+                          child: Youtube()),
                     ),
                   ],
                 ),
@@ -262,4 +262,3 @@ class studyWidget extends StatelessWidget {
     }
   }
 }
-

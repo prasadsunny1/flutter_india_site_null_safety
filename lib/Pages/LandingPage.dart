@@ -31,7 +31,7 @@ class _LandingPageState extends State<LandingPage> {
                         : (Responsiveness.isMediumScreen(context))
                             ? AssetImage(AppInfo.imagecoverIPAD)
                             : AssetImage(AppInfo.imagecoverMobile),
-                    fit: BoxFit.fill)),
+                    fit: BoxFit.cover)),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
